@@ -11,6 +11,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{A71571BC
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebGenCleaning.Lib.Test", "tests\WebGenCleaning.Lib.Test\WebGenCleaning.Lib.Test.csproj", "{B7DBC9D7-CB8E-41F3-ABC5-39B9AD16791E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebGenCleaning.UI", "src\WebGenCleaning.UI\WebGenCleaning.UI.csproj", "{E10D7ABE-F5B6-4DA3-83D5-7FD17C2F72F9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -28,9 +30,14 @@ Global
 		{B7DBC9D7-CB8E-41F3-ABC5-39B9AD16791E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B7DBC9D7-CB8E-41F3-ABC5-39B9AD16791E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B7DBC9D7-CB8E-41F3-ABC5-39B9AD16791E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E10D7ABE-F5B6-4DA3-83D5-7FD17C2F72F9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E10D7ABE-F5B6-4DA3-83D5-7FD17C2F72F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E10D7ABE-F5B6-4DA3-83D5-7FD17C2F72F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E10D7ABE-F5B6-4DA3-83D5-7FD17C2F72F9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{2A683346-9F88-4DE5-9D5D-24ABC253D0C8} = {D4D6BD81-9BCC-4B97-B0A8-E29EF196E9D7}
 		{B7DBC9D7-CB8E-41F3-ABC5-39B9AD16791E} = {A71571BC-158C-44E1-9D09-51609B092D86}
+		{E10D7ABE-F5B6-4DA3-83D5-7FD17C2F72F9} = {D4D6BD81-9BCC-4B97-B0A8-E29EF196E9D7}
 	EndGlobalSection
 EndGlobal
