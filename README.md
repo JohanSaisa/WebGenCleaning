@@ -17,4 +17,6 @@ Run the following commands to restore, test, and run the application.
 ```bash
 dotnet restore
 dotnet test
+cd src/WebGenCleaning.UI/
+dotnet run
 ```
