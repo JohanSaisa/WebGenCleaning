@@ -4,19 +4,23 @@ namespace WebGenCleaning.Lib.Test;
 
 public class UnitTest1
 {
-    [Fact]
-    public void FormatSentencesTest()
+  [Theory]
+  [InlineData(
+    new string[] {"   C#", "daTAbaser", "WebbuTVeCkling ", "clean Code   "},
+    new string[] {"C#", "Databaser", "Webbutveckling", "Clean code"})]
+  [InlineData(
+    new string[] {"  Hej på dig. Jag är Ett Test!", "Hej igen.    Detta är en Inkomplett mening"},
+    new string[] {"Hej på dig. Jag är ett test!", "Hej igen. Detta är en inkomplett mening"})]
+    public void FormatSentencesTest(string[] input, string[] expectedResult)
     {
       // Arrange
-      string[] coursesFromApi = {"   C#", "daTAbaser", "WebbuTVeCkling ", "clean Code   "};
-      string[] expectedCourses = {"C#", "Databaser", "Webbutveckling", "Clean code"};
       
       // Act
-      string[] formattedCourses = WebContentHelper.FormatSentences(coursesFromApi);
+      string[] formattedCourses = WebContentHelper.FormatSentences(input);
 
 
       // Assert
-      formattedCourses.Should().Equal(expectedCourses);
+      formattedCourses.Should().Equal(expectedResult);
     }
 
     [Theory]

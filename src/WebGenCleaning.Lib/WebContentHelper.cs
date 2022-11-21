@@ -9,15 +9,21 @@ public static class WebContentHelper
     var formattedText = new List<string>();
     foreach (var text in textToBeFormatted)
     {
-      var regEx = new Regex(@"(?<sentences>(\S.+?[.!?])(?=\s+|$))|(?<sentencesNoDelmiter>[\w\s]+$)");
-      var sentences = regEx.Matches(text).Cast<Match>().Select(m => m.Value).ToArray();
+      var regEx = new Regex(@"(?<!\w\.\w.)(?<![A-Z][a-z]\.)(?<=\.|\?)\s");
+      var sentences = regEx.Split(text);
 
       var formattedSentence = "";
-      
+
+      var index = 0;
       foreach (var sentence in sentences)
       {
         var t = sentence.ToString()!.Trim().ToLower();
+        
+        if (index > 0)
+          formattedSentence += " ";
+        
         formattedSentence += char.ToUpper(t[0]) + t.Substring(1);
+        index++;
       }
 
       formattedText.Add(formattedSentence);

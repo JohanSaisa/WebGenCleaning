@@ -3,9 +3,16 @@
 /*
  * Data ifrån API
  */
+
+using WebGenCleaning.Lib;
+
 string[] techniques = {"   C#", "daTAbaser", "WebbuTVeCkling ", "clean Code   "};
 string[] messagesToClass = { "Glöm inte att övning ger färdighet!", "Öppna boken på sida 257." };
 
+WebContentHelper.FormatSentences(new string[]
+{
+  "  Hej på dig. Jag är Ett Test!", "Hej igen.    Detta är en Inkomplett mening"
+});
 /*
  * Skriva ut data
  */
