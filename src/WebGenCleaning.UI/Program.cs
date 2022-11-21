@@ -9,64 +9,26 @@ using WebGenCleaning.Lib;
 string[] techniques = {"   C#", "daTAbaser", "WebbuTVeCkling ", "clean Code   "};
 string[] messagesToClass = { "Glöm inte att övning ger färdighet!", "Öppna boken på sida 257." };
 
-WebContentHelper.FormatSentences(new string[]
-{
-  "  Hej på dig. Jag är Ett Test!", "Hej igen.    Detta är en Inkomplett mening"
-});
-/*
- * Skriva ut data
- */
-printPage();
+var myWebPage = new List<string>();
 
-void printStart()
+var myHeading = WebContentHelper.GenerateHtml(HtmlTag.Heading, $" Välkomna Klass A! ");
+
+myWebPage.Add(myHeading);
+
+foreach (var message in messagesToClass)
 {
-  string start = "<!DOCTYPE html>\n<html>\n<body>\n<main>\n";
-  Console.WriteLine(start);
+  var staticHtml = WebContentHelper.GenerateHtml(HtmlTag.Bold, " Meddelande: ");
+  var htmlMessage = WebContentHelper.GenerateHtml(HtmlTag.Paragraph, staticHtml + " " + message + " ");
+
+  myWebPage.Add(htmlMessage);
 }
 
-void printWelcome(string className, string[] message)
+foreach (var technique in WebContentHelper.FormatSentences(techniques))
 {
-  string welcome = $"<h1> Välkomna {className}! </h1>";
-
-  string welcomeMessage = "";
-
-  foreach (string msg in message)
-  {
-    welcomeMessage += $"\n<p><b> Meddelande: </b> {msg} </p>";
-  }
-    
-  Console.WriteLine(welcome + welcomeMessage);
-}
-void printKurser()
-{
-  string kurser = courseGenerator(techniques);
-  Console.WriteLine(kurser);
-}
-void printEnd()
-{
-  string end = "</main>\n</body>\n</html>";
-  Console.WriteLine(end);
+  myWebPage.Add(WebContentHelper.GenerateHtml(HtmlTag.Paragraph, technique));
 }
 
-
-void printPage()
+foreach (var htmlRow in WebContentHelper.GenerateHtmlWrapper(myWebPage.ToArray()))
 {
-  printStart();
-  printWelcome("Klass A", messagesToClass);
-  printKurser();
-  printEnd(); 
-}
-
-
-string courseGenerator(string[] techniques)
-{
-  string kurser = "";
-
-  foreach (string technique in techniques)
-  {
-    string tmp = technique.Trim();
-    kurser += "<p>" + tmp[0].ToString().ToUpper() + tmp.Substring(1).ToLower() + "</p>\n";
-  }
-
-  return kurser;
+  Console.WriteLine(htmlRow);
 }
