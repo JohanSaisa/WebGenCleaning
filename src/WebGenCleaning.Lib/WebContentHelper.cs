@@ -2,6 +2,9 @@
 
 namespace WebGenCleaning.Lib;
 
+/// <summary>
+/// Contains methods for generation and formatting of HTML content.
+/// </summary>
 public static class WebContentHelper
 {
   private static readonly Dictionary<HtmlTag, string> HtmlTags = new Dictionary<HtmlTag, string>()
@@ -14,6 +17,12 @@ public static class WebContentHelper
   private static readonly string[] HtmlStart = new string[] { "<!DOCTYPE html>", "<html>", "<body>", "<main>", };
   private static readonly string[] HtmlEnd = new string[] { "</main>", "</body>", "</html>", };
 
+  /// <summary>
+  /// Formats an array of text so that sentences are capitalized and
+  /// stripped of leading and trailing whitespaces.
+  /// </summary>
+  /// <param name="textToBeFormatted">The rows of text which should be formatted.</param>
+  /// <returns>An array of formatted sentences.</returns>
   public static string[] FormatSentences(string[] textToBeFormatted)
   {
     var formattedText = new List<string>();
