@@ -4,6 +4,16 @@ namespace WebGenCleaning.Lib;
 
 public static class WebContentHelper
 {
+  private static readonly Dictionary<HtmlTag, string> HtmlTags = new Dictionary<HtmlTag, string>()
+  {
+    {HtmlTag.Bold, "b"},
+    {HtmlTag.Paragraph, "p"},
+    {HtmlTag.Heading, "h1"},
+  };
+  
+  private static readonly string[] HtmlStart = new string[] { "<!DOCTYPE html>", "<html>", "<body>", "<main>", };
+  private static readonly string[] HtmlEnd = new string[] { "</main>", "</body>", "</html>", };
+  
   public static string[] FormatSentences(string[] textToBeFormatted)
   {
     var formattedText = new List<string>();
@@ -17,12 +27,12 @@ public static class WebContentHelper
       var index = 0;
       foreach (var sentence in sentences)
       {
-        var t = sentence.ToString()!.Trim().ToLower();
+        var t = sentence.Trim().ToLower();
         
         if (index > 0)
           formattedSentence += " ";
         
-        formattedSentence += char.ToUpper(t[0]) + t.Substring(1);
+        formattedSentence += char.ToUpper(t[0]) + t[1..];
         index++;
       }
 
@@ -32,13 +42,20 @@ public static class WebContentHelper
     return formattedText.ToArray();
   }
 
-  public static string GenerateParagraph(string input)
+  public static string GenerateHtml(HtmlTag htmlTag, string input)
   {
-    return $"<p>{input}</p>";
+    return $"<{HtmlTags[htmlTag]}>{input}</{HtmlTags[htmlTag]}>";
   }
-  
-  public static string GenerateBoldHtml(string input)
+
+  public static string[] GenerateHtmlWrapper(string[] input)
   {
-    return $"<b>{input}</b>";
+    return HtmlStart.Concat(input).ToArray().Concat(HtmlEnd).ToArray();
   }
+}
+
+public enum HtmlTag
+{
+  Paragraph,
+  Bold,
+  Heading,
 }

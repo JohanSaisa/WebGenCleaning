@@ -24,35 +24,90 @@ public class UnitTest1
     }
 
     [Theory]
-    [InlineData("C#", "<p>C#</p>")]
-    [InlineData("Databaser", "<p>Databaser</p>")]
-    [InlineData("Webbutveckling", "<p>Webbutveckling</p>")]
-    [InlineData("Clean code", "<p>Clean code</p>")]
-    public void BuildParagraphTest(string input, string expectedResult)
+    [InlineData(HtmlTag.Paragraph, "C#", "<p>C#</p>")]
+    [InlineData(HtmlTag.Paragraph,"Databaser", "<p>Databaser</p>")]
+    [InlineData(HtmlTag.Paragraph,"Webbutveckling", "<p>Webbutveckling</p>")]
+    [InlineData(HtmlTag.Paragraph,"Clean code", "<p>Clean code</p>")]
+    [InlineData(HtmlTag.Bold, " Meddelande: ", "<b> Meddelande: </b>")]
+    [InlineData(HtmlTag.Heading, " Välkomna Klass A! ", "<h1> Välkomna Klass A! </h1>")]
+    public void BuildParagraphTest(HtmlTag tag, string input, string expectedResult)
     {
       // Arrange
       
       // Act
-      string result = WebContentHelper.GenerateParagraph(input);
+      string result = WebContentHelper.GenerateHtml(tag, input);
 
       // Assert
       result.Should().Be(expectedResult);
     }
     
-    
-    
-
     [Theory]
-    [InlineData(" Meddelande: ", "<b> Meddelande: </b>")]
-    public void GenerateBoldTextTest(string input, string expectedResult)
+    [InlineData(
+      new string[]
+      {
+        ""
+      }, 
+      new string[]
+      {
+        "<!DOCTYPE html>",
+        "<html>", "<body>",
+        "<main>",
+        "",
+        "</main>",
+        "</body>",
+        "</html>",
+      })]
+    [InlineData(
+      new string[]
+      {
+        "Hej"
+      }, 
+      new string[]
+      {
+        "<!DOCTYPE html>",
+        "<html>",
+        "<body>",
+        "<main>",
+        "Hej",
+        "</main>",
+        "</body>",
+        "</html>",
+      })]
+    [InlineData(
+      new string[]
+      {
+        "<h1> Välkomna Klass A! </h1>",
+        "<p><b> Meddelande: </b> Glöm inte att övning ger färdighet! </p>",
+        "<p><b> Meddelande: </b> Öppna boken på sida 257. </p>", "<p>C#</p>",
+        "<p>Databaser</p>",
+        "<p>Webbutveckling</p>",
+        "<p>Clean code</p>",
+      }, 
+      new string[]
+      {
+        "<!DOCTYPE html>",
+        "<html>",
+        "<body>",
+        "<main>",
+        "<h1> Välkomna Klass A! </h1>",
+        "<p><b> Meddelande: </b> Glöm inte att övning ger färdighet! </p>",
+        "<p><b> Meddelande: </b> Öppna boken på sida 257. </p>", "<p>C#</p>",
+        "<p>Databaser</p>",
+        "<p>Webbutveckling</p>",
+        "<p>Clean code</p>",
+        "</main>",
+        "</body>",
+        "</html>",
+      })]
+    public void WrapHtmlInDocType(string[] input, string[] expectedResult)
     {
       // Arrange
       
       // Act
-      string result = WebContentHelper.GenerateBoldHtml(input);
+      string[] result = WebContentHelper.GenerateHtmlWrapper(input);
 
       // Assert
-      result.Should().Be(expectedResult);
+      result.Should().Equal(expectedResult);
     }
 }
 
