@@ -38,6 +38,22 @@ public class UnitTest1
       // Assert
       result.Should().Be(expectedResult);
     }
+    
+    
+    
+
+    [Theory]
+    [InlineData(" Meddelande: ", "<b> Meddelande: </b>")]
+    public void GenerateBoldTextTest(string input, string expectedResult)
+    {
+      // Arrange
+      
+      // Act
+      string result = WebContentHelper.GenerateBoldHtml(input);
+
+      // Assert
+      result.Should().Be(expectedResult);
+    }
 }
 
 

@@ -36,4 +36,9 @@ public static class WebContentHelper
   {
     return $"<p>{input}</p>";
   }
+  
+  public static string GenerateBoldHtml(string input)
+  {
+    return $"<b>{input}</b>";
+  }
 }

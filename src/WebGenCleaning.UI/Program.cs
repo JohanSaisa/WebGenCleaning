@@ -23,6 +23,7 @@ void printStart()
   string start = "<!DOCTYPE html>\n<html>\n<body>\n<main>\n";
   Console.WriteLine(start);
 }
+
 void printWelcome(string className, string[] message)
 {
   string welcome = $"<h1> Välkomna {className}! </h1>";
