@@ -18,7 +18,7 @@ myWebPage.Add(myHeading);
 foreach (var message in messagesToClass)
 {
   var staticHtml = WebContentHelper.GenerateHtml(HtmlTag.Bold, " Meddelande: ");
-  var htmlMessage = WebContentHelper.GenerateHtml(HtmlTag.Paragraph, staticHtml + " " + message + " ");
+  var htmlMessage = WebContentHelper.GenerateHtml(HtmlTag.Paragraph, $"{staticHtml} {message} ");
 
   myWebPage.Add(htmlMessage);
 }
